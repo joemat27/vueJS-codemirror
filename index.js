@@ -1,27 +1,13 @@
+// Polyfill fn.bind() for PhantomJS
+/* eslint-disable no-extend-native */
+Function.prototype.bind = require('function-bind')
 
-/*
-* Vue-CodeMirror
-* Author: surmon@foxmail.com
-* Github: https://github.com/surmon-china/vue-codemirror
-*/
+// require all test files (files that ends with .spec.js)
+const testsContext = require.context('./specs', true, /\.spec$/)
+testsContext.keys().forEach(testsContext)
 
-import _CodeMirror from 'codemirror'
-import codemirror from './codemirror.vue'
-
-const CodeMirror = window.CodeMirror || _CodeMirror
-const install = (Vue, config) => {
-  if (config) {
-    if (config.options) {
-      codemirror.props.globalOptions.default = () => config.options
-    }
-    if (config.events) {
-      codemirror.props.globalEvents.default = () => config.events
-    }
-  }
-  Vue.component(codemirror.name, codemirror)
-}
-
-const VueCodemirror = { CodeMirror, codemirror, install }
-
-export default VueCodemirror
-export { CodeMirror, codemirror, install }
+// require all src files except main.js for coverage.
+// you can also change this to match only the subset of files that
+// you want coverage for.
+const srcContext = require.context('../../src/', true, /^\.\/(?!main(\.js)?$)/)
+srcContext.keys().forEach(srcContext)
