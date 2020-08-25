@@ -7,7 +7,7 @@
 ## vue-codemirror
 [CodeMirror](http://codemirror.net/) component for Vue.
 
-基于 [CodeMirror](http://codemirror.net/)，适用于 Vue 的 Web 代码编辑器。
+Based on [CodeMirror](http://codemirror.net/)，based on Vue of Web Code Editor。
 
 ### Example
 
